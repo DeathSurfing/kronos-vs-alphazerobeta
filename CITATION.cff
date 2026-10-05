@@ -10,8 +10,21 @@ abstract: >-
   of the published AlphaZeroBeta results with all deviations documented.
 type: software
 authors:
-  - family-names: "Vikk"
-    alias: "DeathSurfing"
+  - family-names: "Aditya Vikram Mahendru"
+    alias: "Vikk, Deathsurfing"
+    affiliation: "Woxsen University"
+  - family-names: "Srivastava"
+    given-names: "Dhriti"
+    affiliation: "Woxsen University"
+  - family-names: "Sambu"
+    given-names: "Vyshnavi"
+    affiliation: "Woxsen University"
+  - family-names: "Madireddy"
+    given-names: "Palvasha"
+    affiliation: "Woxsen University"
+  - family-names: "Pentakota"
+    given-names: "Kamalika"
+    affiliation: "Woxsen University"
 version: "1.0.0"
 date-released: "2026-10-05"
 license: MIT

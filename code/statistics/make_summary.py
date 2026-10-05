@@ -257,7 +257,7 @@ should be performed with the institution's tool of record.
 \\usepackage{{amsmath}}
 \\usepackage[hidelinks]{{hyperref}}
 \\title{{Research Summary: Kronos vs AlphaZeroBeta}}
-\\author{{Vikk}}
+\\author{{Aditya Vikram Mahendru, Dhriti Srivastava, Vyshnavi Sambu, Palvasha Madireddy, and Kamalika Pentakota (Woxsen University)}}
 \\date{{2026-10-05}}
 \\begin{{document}}
 \\maketitle
