@@ -2,6 +2,7 @@
 \centering
 \caption{Model architecture and role in the comparison. The two systems are not the same kind of object: one forecasts, the other decides.}
 \label{tab:arch}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrr}
 \toprule
 Model & Type & Params & Ctx & Inputs & Decision use & Training here \\
@@ -10,5 +11,5 @@ Kronos-small & financial foundation model (decoder-only transformer) & 24,741,37
 AlphaZeroBeta & CNN-GRU actor-critic (recurrent PPO) & 1,703,587 & 100 & 8 past-only price/volume features x 3 resolutions & policy emits dollar-neutral weights directly & trained per walk-forward fold \\
 \bottomrule
 \multicolumn{7}{l}{\footnotesize Parameter count for Kronos-small is the official released checkpoint; AlphaZeroBeta count is the median over all reproduced fold runs.} \\
-\end{tabular}
+\end{tabular}}
 \end{table*}

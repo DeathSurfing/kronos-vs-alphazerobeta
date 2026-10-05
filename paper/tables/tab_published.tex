@@ -2,6 +2,7 @@
 \centering
 \caption{Values as reported by the original authors. These are published results, not our experiments.}
 \label{tab:published}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrr}
 \toprule
 Source & Market & Metric & Reported value & Reported sd \\
@@ -19,5 +20,5 @@ AlphaZeroBeta (Belyakov 2026) & all 7 & average Sharpe & 1.251 & 0.30 \\
 Kronos (Shi et al. 2025) & various & zero-shot forecasting & -- & - \\
 \bottomrule
 \multicolumn{5}{l}{\footnotesize Kronos reports forecasting and generative metrics, not a portfolio Sharpe; the corresponding cell is intentionally left as a dash rather than forcing an incomparable number.} \\
-\end{tabular}
+\end{tabular}}
 \end{table*}

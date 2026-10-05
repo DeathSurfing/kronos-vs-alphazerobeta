@@ -560,6 +560,7 @@ four rather than the one that happened to survive.
 \begin{table}[t]
 \centering
 \footnotesize
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrl}
 \toprule
 Run & Steps/fold & lr & Outcome \\
@@ -569,7 +570,7 @@ B & 1500 & $1\times10^{-4}$ & value loss reached $3\times10^{25}$ on fold 0; pol
 C & 1500 & $5\times10^{-5}$ & value loss reached $8\times10^{11}$ on fold 0; non-finite updates present \\
 D & 2000 & $3\times10^{-4}$ & all 22 folds, no non-finite update; mean gross exposure 0.83; \emph{this is the reported arm} \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \caption{Four attempts to reproduce AlphaZeroBeta inside the available compute budget. Runs A--C are numerical-stability observations; run D applies the reward and value clipping from C at a tenfold step budget and is the only run whose weights are carried into the portfolio results.}
 \label{tab:unstable}
 \end{table}
@@ -622,6 +623,7 @@ trained stably:
 \begin{table}[t]
 \centering
 \footnotesize
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{llrl}
 \toprule
 Run & log\_prob at & Non-finite updates & Loss trajectory \\
@@ -630,7 +632,7 @@ A & projected & many & $9.6 \to 3.7\times10^{4} \to 1.5\times10^{34}$ \\
 B & projected & 2543 & median $4.7$, max $2.5\times10^{35}$ \\
 C & \textbf{raw sample} & \textbf{0} & $4.61 \to 4.07 \to 4.14 \to 3.99$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \caption{The single change that made the reproduction train. The projection is a deterministic map, so it regularly moves a sample far into the tail of the density being optimised; the clipped ratio then diverges.}
 \label{tab:projbug}
 \end{table}

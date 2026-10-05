@@ -4,6 +4,7 @@
 \setlength{\tabcolsep}{3.2pt}
 \caption{Statistical comparison of Sharpe ratios (stationary block bootstrap, 21-day blocks, 5000 resamples) and Newey--West (lag 5) alpha against the index.}
 \label{tab:sig}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lrrrrrrrr@{}}
 \toprule
 Comparison & $S_a$ & $S_b$ & $\Delta S$ & 95\% CI (block bootstrap) & $p$ & $\alpha$ ann. & $t_{NW}$ & $p_{NW}$ \\
@@ -18,5 +19,5 @@ AlphaZeroBeta vs Ridge (walk-forward) & -0.476 & -1.479 & 1.003 & [0.152, 1.913]
 Kronos (zero-shot) vs Equal weight & -3.010 & 0.776 & -3.785 & [-4.862, -2.986] & 0.000 & -0.271 & -9.58 & 0.000 \\
 \bottomrule
 \multicolumn{9}{l}{\footnotesize A confidence interval containing zero means the Sharpe difference is not distinguishable from zero at the 5\% level under this resampling scheme.} \\
-\end{tabular}
+\end{tabular}}
 \end{table*}

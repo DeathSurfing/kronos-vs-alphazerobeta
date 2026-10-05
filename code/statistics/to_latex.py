@@ -47,31 +47,39 @@ def esc(s):
 
 
 def write(name, header, rows, caption, label, align=None, note=None):
+    # \resizebox to \textwidth: these full-width tables overflowed the IEEEtran
+    # conference text block when the caption/columns were longest. ponytail:
+    # scales type rather than reflowing columns; switch to a multirow/shortened
+    # header only if a table needs to stay at a fixed point size.
     align = align or ("l" + "r" * (len(header) - 1))
     lines = [f"\\begin{{table*}}[t]", "\\centering",
              f"\\caption{{{caption}}}", f"\\label{{{label}}}",
+             "\\resizebox{\\textwidth}{!}{%",
              f"\\begin{{tabular}}{{{align}}}", "\\toprule",
              " & ".join(header) + " \\\\", "\\midrule"]
     lines += [" & ".join(r) + " \\\\" for r in rows]
     lines.append("\\bottomrule")
     if note:
         lines.append(f"\\multicolumn{{{len(header)}}}{{l}}{{\\footnotesize {note}}} \\\\")
-    lines += ["\\end{tabular}", "\\end{table*}"]
+    lines += ["\\end{tabular}}", "\\end{table*}"]
     open(f"{TEX}/{name}.tex", "w").write("\n".join(lines) + "\n")
 
 
 def write_wide(name, header, rows, caption, label, note=None):
+    # as in write(): bounding box pinned to \textwidth so long entries cannot
+    # push the column past the right page edge.
     align = "l" + "r" * (len(header) - 1)
     lines = [f"\\begin{{table*}}[t]", "\\centering", "\\footnotesize",
              "\\setlength{\\tabcolsep}{3.2pt}",
              f"\\caption{{{caption}}}", f"\\label{{{label}}}",
+             "\\resizebox{\\textwidth}{!}{%",
              "\\begin{tabular}{@{}" + align + "@{}}", "\\toprule",
              " & ".join(header) + " \\\\", "\\midrule"]
     lines += [" & ".join(r) + " \\\\" for r in rows]
     lines.append("\\bottomrule")
     if note:
         lines.append(f"\\multicolumn{{{len(header)}}}{{l}}{{\\footnotesize {note}}} \\\\")
-    lines += ["\\end{tabular}", "\\end{table*}"]
+    lines += ["\\end{tabular}}", "\\end{table*}"]
     open(f"{TEX}/{name}.tex", "w").write("\n".join(lines) + "\n")
 
 
@@ -221,16 +229,19 @@ def t10():
 
 
 def write_plain(name, header, rows, caption, label, note=None):
+    # ponytail: single-column tables still need the width bound when the note
+    # spans every column; \resizebox keeps the box inside \columnwidth.
     align = "l" + "r" * (len(header) - 1)
     lines = ["\\begin{table}[t]", "\\centering", "\\footnotesize",
              f"\\caption{{{caption}}}", f"\\label{{{label}}}",
+             "\\resizebox{\\columnwidth}{!}{%",
              f"\\begin{{tabular}}{{{align}}}", "\\toprule",
              " & ".join(header) + " \\\\", "\\midrule"]
     lines += [" & ".join(r) + " \\\\" for r in rows]
     lines += ["\\bottomrule"]
     if note:
         lines.append(f"\\multicolumn{{{len(header)}}}{{l}}{{\\footnotesize {note}}} \\\\")
-    lines += ["\\end{tabular}", "\\end{table}"]
+    lines += ["\\end{tabular}}", "\\end{table}"]
     open(f"{TEX}/{name}.tex", "w").write("\n".join(lines) + "\n")
 
 

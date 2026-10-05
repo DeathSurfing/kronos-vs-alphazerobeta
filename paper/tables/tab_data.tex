@@ -2,6 +2,7 @@
 \centering
 \caption{Dataset, walk-forward protocol, cost model, constraints and seeds. Frozen before any test-window result was computed.}
 \label{tab:data}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lr}
 \toprule
 Item & Value \\
@@ -27,5 +28,5 @@ constraints (long arms) & sum w = 1, w\_i $>$= 0 \\
 seeds & AZB: 1 seed all 22 folds; 3 seeds on folds \{0,7,14\} for seed sensitivity \\
 hardware & NVIDIA RTX 4080 SUPER 16 GB, Windows 11; CPU pipeline on 4-core container \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table*}

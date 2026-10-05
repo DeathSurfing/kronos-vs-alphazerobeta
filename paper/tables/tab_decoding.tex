@@ -2,6 +2,7 @@
 \centering
 \caption{Decoding ablation for the forecast arm over the overlapping 2024 window (25{,}200 shared forecasts). The model's own recommended price-forecasting setting is compared against the setting used in the reported runs.}
 \label{tab:decoding}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrr}
 \toprule
 Decoding & N & MAE & RMSE & Dir.\ acc. & Rank IC & Rank IC $t$ \\
@@ -10,5 +11,5 @@ T=1.0, N=1 (reported) & 25200 & 10.05 & 24.25 & 0.4863 & -0.00556 & -0.42 \\
 T=0.6, N=5 (recommended) & 25200 & 8.64 & 20.16 & 0.4833 & -0.00692 & -0.48 \\
 \bottomrule
 \multicolumn{7}{l}{\footnotesize The recommended setting roughly halves the relative error in level accuracy but leaves the cross-sectional rank information coefficient statistically indistinguishable from zero in both cases. Advice, not beta, is what the portfolio needs.} \\
-\end{tabular}
+\end{tabular}}
 \end{table*}

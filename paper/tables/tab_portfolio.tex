@@ -4,6 +4,7 @@
 \setlength{\tabcolsep}{3.2pt}
 \caption{Level-2 portfolio evaluation, S\&P 500, 22 walk-forward folds, baseline costs (5/15 bps per side plus 30 bps\,/\,yr borrow). Dollar-neutral arms target $\sum w_i=0$ and $\sum|w_i|\le1$; net-long arms are the passive reference set.}
 \label{tab:portfolio}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lrrrrrrrrrrr@{}}
 \toprule
 Model & CAGR & Vol & Sharpe & Sortino & Calmar & Max DD & ES95 & Beta & Corr & Turnover & Gross exp. \\
@@ -18,5 +19,5 @@ S\&P 500 buy-and-hold & 0.115 & 0.171 & 0.725 & 0.859 & 0.340 & -0.339 & -0.0263
 AlphaZeroBeta & -0.036 & 0.068 & -0.497 & -0.620 & -0.096 & -0.371 & -0.0106 & -0.024 & -0.060 & -- & -- \\
 \bottomrule
 \multicolumn{12}{l}{\footnotesize Volatility, Sharpe, Sortino and Calmar are annualised from daily net returns. Beta and correlation are measured against the S\&P 500 index return. Turnover is the annualised sum of absolute weight changes.} \\
-\end{tabular}
+\end{tabular}}
 \end{table*}

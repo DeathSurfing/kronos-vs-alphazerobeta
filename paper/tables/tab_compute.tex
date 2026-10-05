@@ -4,6 +4,7 @@
 \setlength{\tabcolsep}{3.2pt}
 \caption{Computational comparison on a single NVIDIA RTX 4080 SUPER. Latency is per-name single-step inference after warm-up.}
 \label{tab:compute}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}lrrrrrrrr@{}}
 \toprule
 Model & Params & Device & Mean (ms) & Median (ms) & p95 (ms) & Names/s & Train (s/fold) & Notes \\
@@ -12,5 +13,5 @@ Kronos-small & 24,741,376 & RTX 4080 SUPER & -- & -- & -- & -- & 0.0 & zero-shot
 AlphaZeroBeta & 1,703,587 & RTX 4080 SUPER & -- & -- & -- & -- & 165.7 & mean per fold over 71 fold runs \\
 \bottomrule
 \multicolumn{9}{l}{\footnotesize Latency for the RL agent is not comparable in the same unit: it produces a joint portfolio decision rather than a per-name forecast, so per-name inference latency is reported for Kronos only. Training time for Kronos is zero because the released checkpoint is used zero-shot.} \\
-\end{tabular}
+\end{tabular}}
 \end{table*}

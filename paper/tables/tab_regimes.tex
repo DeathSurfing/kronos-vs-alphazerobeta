@@ -2,6 +2,7 @@
 \centering
 \caption{Sharpe ratio by prespecified market regime. Regimes are defined from the index alone (60-day realised volatility terciles; bull if the running drawdown is shallower than $-10\%$).}
 \label{tab:regimes}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrr}
 \toprule
 Regime & Kronos (zero-shot) & AlphaZeroBeta & Momentum (12-1) & Ridge (walk-forward) & S\&P 500 buy-and-hold & Equal weight \\
@@ -13,5 +14,5 @@ low vol & -5.337 & -0.157 & 0.569 & -2.679 & 1.244 & 0.271 \\
 mid vol & -3.456 & -0.922 & -0.801 & -1.592 & 0.780 & 0.894 \\
 \bottomrule
 \multicolumn{7}{l}{\footnotesize Regimes are defined ex ante from the benchmark, so no strategy's own path influences the partition.} \\
-\end{tabular}
+\end{tabular}}
 \end{table*}

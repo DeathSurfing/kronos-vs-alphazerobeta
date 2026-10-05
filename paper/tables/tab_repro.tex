@@ -2,6 +2,7 @@
 \centering
 \caption{Published versus independently reproduced AlphaZeroBeta results on the S\&P 500. Percentage difference is $(reproduced-published)/|published|$.}
 \label{tab:repro}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrr}
 \toprule
 Metric (S\&P 500) & Published & Reproduced & Difference & Difference (\%) \\
@@ -12,5 +13,5 @@ corr & 0.150 & -0.060 & -0.210 & -140.1 \\
 index buy-and-hold sharpe & 0.720 & 0.725 & 0.005 & 0.7 \\
 \bottomrule
 \multicolumn{5}{l}{\footnotesize Reproduction is deliberately partial (see Section~\ref{sec:repro}): shorter PPO training, 1 seed on all folds, a 100-name investable subset instead of the full index, and public daily data instead of the vendor panel.} \\
-\end{tabular}
+\end{tabular}}
 \end{table*}
