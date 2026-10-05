@@ -5,9 +5,9 @@
  "sharpe_kronos": -3.00975891388946,
  "corr_kronos": 0.0207441828584266,
  "mdd_kronos": -0.9205242240350252,
- "sharpe_azb_s42": -0.2273507808792227,
- "corr_azb_s42": 0.0001781930152456,
- "mdd_azb_s42": -0.0010730988865782,
+ "sharpe_azb_s42": -0.496876448958698,
+ "corr_azb_s42": -0.0602146761552241,
+ "mdd_azb_s42": -0.3712002975890788,
  "sharpe_momentum": -0.1603736194375528,
  "corr_momentum": -0.0831609394090905,
  "mdd_momentum": -0.3631140901502142,
@@ -15,10 +15,10 @@
  "corr_ridge": 0.0063703637917659,
  "mdd_ridge": -0.8186039230682414,
  "kronos_vs_azb_s42": {
-  "diff": -2.668,
+  "diff": -2.518,
   "ci": [
-   -3.614,
-   -1.76
+   -3.536,
+   -1.564
   ],
   "p": 0.0,
   "significant": true
@@ -33,12 +33,12 @@
   "significant": true
  },
  "azb_s42_vs_index_ref": {
-  "diff": -0.961,
+  "diff": -1.231,
   "ci": [
-   -1.807,
-   -0.177
+   -2.243,
+   -0.319
   ],
-  "p": 0.0176,
+  "p": 0.0084,
   "significant": true
  },
  "kronos_vs_momentum": {
@@ -51,12 +51,12 @@
   "significant": true
  },
  "azb_s42_vs_momentum": {
-  "diff": -0.301,
+  "diff": -0.35,
   "ci": [
-   -0.923,
-   0.542
+   -1.202,
+   0.54
   ],
-  "p": 0.2452,
+  "p": 0.3932,
   "significant": false
  },
  "kronos_vs_ridge": {
@@ -69,12 +69,12 @@
   "significant": true
  },
  "azb_s42_vs_ridge": {
-  "diff": 1.144,
+  "diff": 1.003,
   "ci": [
-   0.405,
-   1.89
+   0.152,
+   1.913
   ],
-  "p": 0.0028,
+  "p": 0.0208,
   "significant": true
  },
  "kronos_vs_equal": {
@@ -90,23 +90,23 @@
   {
    "metric": "sharpe",
    "published": 1.61,
-   "reproduced": -0.2274,
-   "abs_diff": -1.8374,
-   "pct_diff": -114.1
+   "reproduced": -0.4969,
+   "abs_diff": -2.1069,
+   "pct_diff": -130.9
   },
   {
    "metric": "max_dd",
    "published": -0.26,
-   "reproduced": -0.0011,
-   "abs_diff": 0.2589,
-   "pct_diff": 99.6
+   "reproduced": -0.3712,
+   "abs_diff": -0.1112,
+   "pct_diff": -42.8
   },
   {
    "metric": "corr",
    "published": 0.15,
-   "reproduced": 0.0002,
-   "abs_diff": -0.1498,
-   "pct_diff": -99.9
+   "reproduced": -0.0602,
+   "abs_diff": -0.2102,
+   "pct_diff": -140.1
   },
   {
    "metric": "index buy-and-hold sharpe",

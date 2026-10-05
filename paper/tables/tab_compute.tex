@@ -9,7 +9,7 @@
 Model & Params & Device & Mean (ms) & Median (ms) & p95 (ms) & Names/s & Train (s/fold) & Notes \\
 \midrule
 Kronos-small & 24,741,376 & RTX 4080 SUPER & -- & -- & -- & -- & 0.0 & zero-shot; no training \\
-AlphaZeroBeta & 1,703,587 & RTX 4080 SUPER & -- & -- & -- & -- & 54.2 & mean per fold over 31 fold runs \\
+AlphaZeroBeta & 1,703,587 & RTX 4080 SUPER & -- & -- & -- & -- & 165.7 & mean per fold over 71 fold runs \\
 \bottomrule
 \multicolumn{9}{l}{\footnotesize Latency for the RL agent is not comparable in the same unit: it produces a joint portfolio decision rather than a per-name forecast, so per-name inference latency is reported for Kronos only. Training time for Kronos is zero because the released checkpoint is used zero-shot.} \\
 \end{tabular}

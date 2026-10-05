@@ -43,3 +43,6 @@ papers/
 _summary_body.tex
 research_summary.aux
 research_summary.log
+
+# --- run archives (weights kept out; see docs/experiment_log.md) ---
+windows_azb200/

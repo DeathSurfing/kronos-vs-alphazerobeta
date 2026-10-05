@@ -577,6 +577,52 @@ numerically unbounded when the volatility estimate approaches its floor, and any
 re-implementation that does not clip it will diverge unless it is trained long
 enough to leave the near-flat region.
 
+
+\subsection{A projected action space breaks the naive policy likelihood}
+\label{sec:projection-bug}
+
+Every one of the divergence failures reported above traces to one implementation
+decision, and it is worth recording because it is easy to make and hard to see.
+The action space is constrained by construction: the policy output is projected to
+be dollar-neutral with bounded gross exposure. The natural implementation samples
+from the Gaussian policy and then projects the sample. In the four runs we
+attempted, every run that fed the \emph{projected} action back into the log-density
+diverged, and every run that evaluated the density at the \emph{raw sample}
+trained stably:
+
+\begin{table}[t]
+\centering
+\footnotesize
+\begin{tabular}{llrl}
+\toprule
+Run & log\_prob at & Non-finite updates & Loss trajectory \\
+\midrule
+A & projected & many & $9.6 \to 3.7\times10^{4} \to 1.5\times10^{34}$ \\
+B & projected & 2543 & median $4.7$, max $2.5\times10^{35}$ \\
+C & \textbf{raw sample} & \textbf{0} & $4.61 \to 4.07 \to 4.14 \to 3.99$ \\
+\bottomrule
+\end{tabular}
+\caption{The single change that made the reproduction train. The projection is a deterministic map, so it regularly moves a sample far into the tail of the density being optimised; the clipped ratio then diverges.}
+\label{tab:projbug}
+\end{table}
+
+A diagonal Gaussian has support on all of $\mathbb{R}^N$; the $\ell_1$-ball
+projection does not. Evaluating the density at the projected point therefore
+differentiates the likelihood of a point that may be arbitrarily improbable under
+the proposal, and in the clipped objective the ratio $\exp(\log\pi_t -
+\log\pi_{t-1})$ inherits that. The correct treatment of a bounded or squashed
+action is to evaluate the density at the raw sample and apply the projection as a
+deterministic action map after sampling. Only the raw sample lies in the support
+of the density being optimised.
+
+This interacts with the reward. The published formulation floors $\sigma_p$ at
+$1\times10^{-8}$, so a near-flat book makes both the reward ratio and the
+likelihood ratio ill conditioned at once, and the null portfolio becomes a
+spurious attractor. That is precisely where the first run settled, at zero gross
+exposure on every out-of-sample day. We therefore also report the number of
+non-finite gradient updates as a training diagnostic, rather than reading a flat
+learning curve as evidence about the method.
+
 \section{Computational Analysis}
 \label{sec:compute}
 \input{\tabdir/tab_compute}

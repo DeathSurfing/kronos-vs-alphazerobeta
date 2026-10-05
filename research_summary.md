@@ -115,9 +115,9 @@ investable subset, public daily data); the gap is reported as a finding.
 
 | metric | published | reproduced | abs_diff | pct_diff |
 |---|---|---|---|---|
-| sharpe | 1.61 | -0.227 | -1.837 | -114.1 |
-| max_dd | -0.26 | -0.001 | 0.259 | 99.6 |
-| corr | 0.15 | 0.0 | -0.15 | -99.9 |
+| sharpe | 1.61 | -0.497 | -2.107 | -130.9 |
+| max_dd | -0.26 | -0.371 | -0.111 | -42.8 |
+| corr | 0.15 | -0.06 | -0.21 | -140.1 |
 | index buy-and-hold sharpe | 0.72 | 0.725 | 0.005 | 0.7 |
 
 ## 8. Benchmark results
@@ -146,19 +146,19 @@ DM = 30.190, p = 0.000, n = 2515.
 | mincorr | 0.184 | 0.217 | 0.887 | 1.151 | 0.484 | -0.38 | -0.02 | -0.031 | -0.109 | -0.088 | -0.218 | 2523 | nan | nan | nan | nan | nan | nan | nan | nan |
 | kronos | -0.236 | 0.088 | -3.01 | -4.874 | -0.256 | -0.921 | -0.009 | -0.012 | 0.01 | 0.021 | 1.407 | 2367 | nan | nan | nan | nan | nan | nan | nan | nan |
 | index_ref | 0.115 | 0.171 | 0.725 | 0.859 | 0.34 | -0.339 | -0.016 | -0.026 | 1.0 | 1.0 | -0.582 | 2772 | nan | nan | nan | nan | nan | nan | nan | nan |
-| azb_s42 | -0.0 | 0.0 | -0.227 | -0.117 | -0.057 | -0.001 | -0.0 | -0.0 | 0.0 | 0.0 | 2.402 | 2625 | nan | nan | nan | nan | nan | nan | nan | nan |
+| azb_s42 | -0.036 | 0.068 | -0.497 | -0.62 | -0.096 | -0.371 | -0.006 | -0.011 | -0.024 | -0.06 | 0.045 | 2625 | nan | nan | nan | nan | nan | nan | nan | nan |
 
 ### 8.3 Statistical tests
 
 | model_a | model_b | sharpe_a | sharpe_b | diff | ci_lo | ci_hi | p_value | alpha_ann | alpha_t | alpha_p |
 |---|---|---|---|---|---|---|---|---|---|---|
-| kronos | azb_s42 | -3.01 | -0.342 | -2.668 | -3.614 | -1.76 | 0.0 | -0.271 | -9.583 | 0.0 |
+| kronos | azb_s42 | -3.01 | -0.491 | -2.518 | -3.536 | -1.564 | 0.0 | -0.271 | -9.583 | 0.0 |
 | kronos | index_ref | -3.01 | 0.728 | -3.738 | -4.888 | -2.89 | 0.0 | -0.271 | -9.583 | 0.0 |
-| azb_s42 | index_ref | -0.227 | 0.734 | -0.961 | -1.807 | -0.177 | 0.018 | -0.0 | -0.653 | 0.514 |
+| azb_s42 | index_ref | -0.497 | 0.734 | -1.231 | -2.243 | -0.319 | 0.008 | -0.034 | -1.552 | 0.121 |
 | kronos | momentum | -3.01 | -0.163 | -2.847 | -4.041 | -1.731 | 0.0 | -0.271 | -9.583 | 0.0 |
-| azb_s42 | momentum | -0.457 | -0.156 | -0.301 | -0.923 | 0.542 | 0.245 | -0.0 | -0.653 | 0.514 |
+| azb_s42 | momentum | -0.505 | -0.156 | -0.35 | -1.202 | 0.54 | 0.393 | -0.034 | -1.552 | 0.121 |
 | kronos | ridge | -3.01 | -1.413 | -1.597 | -2.495 | -0.681 | 0.0 | -0.271 | -9.583 | 0.0 |
-| azb_s42 | ridge | -0.335 | -1.479 | 1.144 | 0.405 | 1.89 | 0.003 | -0.0 | -0.653 | 0.514 |
+| azb_s42 | ridge | -0.476 | -1.479 | 1.003 | 0.152 | 1.913 | 0.021 | -0.034 | -1.552 | 0.121 |
 | kronos | equal | -3.01 | 0.776 | -3.785 | -4.862 | -2.986 | 0.0 | -0.271 | -9.583 | 0.0 |
 
 ### 8.4 Regime analysis
@@ -172,7 +172,7 @@ DM = 30.190, p = 0.000, n = 2515.
 | low vol | mincorr | 0x | 800 | 0.05 | 0.379 |
 | low vol | kronos | 0x | 745 | -0.076 | -1.14 |
 | low vol | index_ref | 0x | 912 | 0.114 | 1.244 |
-| low vol | azb_s42 | 0x | 847 | 0.0 | 0.309 |
+| low vol | azb_s42 | 0x | 847 | 0.024 | 0.414 |
 | low vol | momentum | 1x | 800 | 0.052 | 0.569 |
 | low vol | ridge | 1x | 800 | -0.213 | -2.679 |
 | low vol | equal | 1x | 912 | 0.031 | 0.271 |
@@ -180,7 +180,7 @@ DM = 30.190, p = 0.000, n = 2515.
 | low vol | mincorr | 1x | 800 | 0.04 | 0.302 |
 | low vol | kronos | 1x | 745 | -0.355 | -5.337 |
 | low vol | index_ref | 1x | 912 | 0.114 | 1.244 |
-| low vol | azb_s42 | 1x | 847 | -0.0 | -0.082 |
+| low vol | azb_s42 | 1x | 847 | -0.009 | -0.157 |
 | low vol | momentum | 2x | 800 | 0.017 | 0.19 |
 | low vol | ridge | 2x | 800 | -0.395 | -4.954 |
 | low vol | equal | 2x | 912 | 0.024 | 0.206 |
@@ -188,7 +188,7 @@ DM = 30.190, p = 0.000, n = 2515.
 | low vol | mincorr | 2x | 800 | 0.03 | 0.225 |
 | low vol | kronos | 2x | 745 | -0.635 | -9.515 |
 | low vol | index_ref | 2x | 912 | 0.114 | 1.244 |
-| low vol | azb_s42 | 2x | 847 | -0.0 | -0.493 |
+| low vol | azb_s42 | 2x | 847 | -0.042 | -0.729 |
 | mid vol | momentum | 0x | 812 | -0.044 | -0.439 |
 | mid vol | ridge | 0x | 749 | 0.038 | 0.417 |
 | mid vol | equal | 0x | 907 | 0.139 | 0.94 |
@@ -196,7 +196,7 @@ DM = 30.190, p = 0.000, n = 2515.
 | mid vol | mincorr | 0x | 811 | 0.109 | 0.639 |
 | mid vol | kronos | 0x | 710 | 0.057 | 0.834 |
 | mid vol | index_ref | 0x | 907 | 0.11 | 0.78 |
-| mid vol | azb_s42 | 0x | 866 | 0.0 | 0.082 |
+| mid vol | azb_s42 | 0x | 866 | -0.042 | -0.512 |
 | mid vol | momentum | 1x | 812 | -0.08 | -0.801 |
 | mid vol | ridge | 1x | 749 | -0.146 | -1.592 |
 | mid vol | equal | 1x | 907 | 0.132 | 0.894 |
@@ -204,13 +204,13 @@ DM = 30.190, p = 0.000, n = 2515.
 | mid vol | mincorr | 1x | 811 | 0.099 | 0.582 |
 | mid vol | kronos | 1x | 710 | -0.235 | -3.456 |
 | mid vol | index_ref | 1x | 907 | 0.11 | 0.78 |
-| mid vol | azb_s42 | 1x | 866 | -0.0 | -0.408 |
+| mid vol | azb_s42 | 1x | 866 | -0.076 | -0.922 |
 
 ### 8.5 Transaction-cost sensitivity
 
 | model | cagr_0x | cagr_1x | cagr_2x | sharpe_0x | sharpe_1x | sharpe_2x |
 |---|---|---|---|---|---|---|
-| azb_s42 | 0.0 | -0.0 | -0.0 | 0.134 | -0.227 | -0.548 |
+| azb_s42 | -0.005 | -0.036 | -0.065 | -0.039 | -0.497 | -0.954 |
 | equal | 0.138 | 0.131 | 0.123 | 0.793 | 0.756 | 0.719 |
 | index_ref | 0.115 | 0.115 | 0.115 | 0.725 | 0.725 | 0.725 |
 | kronos | 0.02 | -0.236 | -0.427 | 0.27 | -3.01 | -6.276 |
@@ -232,7 +232,7 @@ DM = 30.190, p = 0.000, n = 2515.
 | model | params | device | mean_latency_ms | median_latency_ms | p95_latency_ms | throughput_names_per_s | training_time_s | notes |
 |---|---|---|---|---|---|---|---|---|
 | Kronos-small | 24741376 | RTX 4080 SUPER | nan | nan | nan | nan | 0.0 | zero-shot; no training |
-| AlphaZeroBeta | 1703587 | RTX 4080 SUPER | nan | nan | nan | nan | 54.2 | mean per fold over 31 fold runs |
+| AlphaZeroBeta | 1703587 | RTX 4080 SUPER | nan | nan | nan | nan | 165.7 | mean per fold over 71 fold runs |
 
 ## 9. Statistical honesty check
 
@@ -253,7 +253,7 @@ DM = 30.190, p = 0.000, n = 2515.
     two systems optimise different objectives, so the comparison measures
     outcomes under a shared protocol, not the merit of either objective.
 
-Experimental runs logged: 31.
+Experimental runs logged: 71.
 
 ## 10. Review cycles
 

@@ -34,8 +34,8 @@ Every entry below was confirmed by fetching the listed URL (arXiv atom/abs API, 
 | frazzini2018tradingcosts | https://api.crossref.org/works/10.2139/ssrn.3229719 | "Trading Costs", SSRN (Frazzini, Israel, Moskowitz) |
 | sezer2020survey | https://api.crossref.org/works/10.1016/j.asoc.2020.106181 | "Financial time series forecasting with deep learning: A systematic literature review: 2005-2019", Applied Soft Computing, 90:106181 |
 | felizardo2022survey | https://arxiv.org/abs/2212.06064 | "Reinforcement Learning Applied to Trading Systems: A Survey" |
-| shi2025kronos | https://arxiv.org/abs/2508.02739 | "Kronos: A Foundation Model for the Language of Financial Markets" (Shi, Fu, Chen, Zhao, Xu, Zhang, Li) |
-| belyakov2026alphazerobeta | https://api.crossref.org/works/10.1186/s40854-026-00955-4 | "AlphaZeroBeta: deep reinforcement learning for market-neutral portfolios", Financial Innovation, 2026, DOI 10.1186/s40854-026-00955-4 |
+| shi2025kronos | https://ojs.aaai.org/index.php/AAAI/article/view/39730 | "Kronos: A Foundation Model for the Language of Financial Markets" — AAAI proceedings page; citation_doi 10.1609/aaai.v40i30.39730, vol 40, no 30, pp. 25366-25373, authors Yu Shi, Zongliang Fu, Shuo Chen, Bohan Zhao, Wei Xu, Changshui Zhang (arXiv 2508.02739) |
+| belyakov2026alphazerobeta | https://api.crossref.org/works/10.1186/s40854-026-00955-4 | "AlphaZeroBeta: deep reinforcement learning for market-neutral portfolios", Financial Innovation, vol 12, issue 1, article 156, published 2026-09-20, DOI 10.1186/s40854-026-00955-4 (arXiv 2607.18001) |
 
 ## Notes
 - Subject papers appear exactly once each: `shi2025kronos` (Kronos), `belyakov2026alphazerobeta` (AlphaZeroBeta).

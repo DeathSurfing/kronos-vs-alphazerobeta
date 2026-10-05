@@ -1,3 +1,3 @@
 model,params,device,mean_latency_ms,median_latency_ms,p95_latency_ms,throughput_names_per_s,training_time_s,notes
 Kronos-small,24741376,RTX 4080 SUPER,,,,,0.0,zero-shot; no training
-AlphaZeroBeta,1703587,RTX 4080 SUPER,,,,,54.2,mean per fold over 31 fold runs
+AlphaZeroBeta,1703587,RTX 4080 SUPER,,,,,165.7,mean per fold over 71 fold runs

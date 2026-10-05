@@ -208,3 +208,55 @@ A second, smaller deviation: the paper reports IC/RankIC averaged over the four
 OHLC channels, whereas the exploitation signal used here is derived solely from
 the predicted close. We do not report an IC number for the paper's four-channel
 definition.
+
+
+---
+
+## Addendum: bounded action space defeats the naive policy-gradient likelihood (D14)
+
+The AlphaZeroBeta action space is constrained by construction: the policy output
+is projected to be dollar-neutral with bounded gross exposure. The obvious
+implementation samples from the Gaussian policy and then projects the sample.
+
+That implementation **does not train**, and the reason is worth stating plainly
+because it looks like a hyperparameter problem and is not one.
+
+A diagonal Gaussian assigns density over the whole real line. The projection maps
+any point onto the L1 ball, and does so *deterministically*. If the projected
+action is then fed back as the action whose `log_prob` is evaluated, the
+likelihood being differentiated is that of a point that may be arbitrarily
+improbable under the proposal: the projection regularly rescales a sample by a
+large factor, so `log_prob(projected)` can be enormous. In the clipped
+surrogate objective the ratio `exp(log_pi - log_pi_old)` then diverges, gradients
+follow it, and the loss reaches `1e35` within a handful of updates.
+
+Observed failures, all with the same signature (healthy loss for several updates,
+then a single catastrophic one):
+
+| Run | reward/value clip | log_prob at | outcome |
+|---|---|---|---|
+| `azb` | none | projected | all 22 folds; policy collapsed to the null portfolio (gross exposure 0.000) |
+| `azb_fast` | reward +-10 | projected | loss 9.6 -> 3.7e4 -> 1.5e34 by update 7; NaN by update 10 |
+| `azb_fast2` | reward +-10, advantage +-100, value +-50 | projected | 2543 non-finite updates in one fold; median loss 4.67, max 2.5e35 |
+| `azb_fast3` | as above | **raw sample** | loss stable 4.61 -> 4.27 -> 4.07 -> 4.14 -> 4.46 -> 3.99; **0 non-finite updates** |
+
+The fix is one line: evaluate the log-density at the **raw sample**, and treat the
+projection as a deterministic action map applied after sampling (the standard
+treatment of a squashed or bounded action). Only the raw sample is inside the
+support of the density being optimised; the projected point is not.
+
+A second, smaller fix: clamping `logstd` to `[-4, 0]` keeps `sigma` in
+`[e^-4, 1]`, so `log_prob` cannot be driven arbitrarily negative by a standard
+deviation that training has squeezed toward zero.
+
+### Why this matters beyond this study
+
+The published reward floors `sigma_p` at `1e-8`. Combined with a projection
+applied inside the likelihood, the null portfolio becomes a spurious attractor:
+a near-flat book makes both the reward ratio and the likelihood ratio ill
+conditioned, and the agent's cheapest escape is to stop trading. Three of the
+four runs above ended either diverged or collapsed to exactly that state. Any
+re-implementation of a projected-action RL agent for portfolios should check this
+before concluding the method does not work, and should report the number of
+non-finite gradient updates as a training diagnostic rather than attributing
+flat learning curves to the algorithm.
