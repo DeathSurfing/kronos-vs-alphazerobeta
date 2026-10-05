@@ -45,6 +45,8 @@ def main():
     ap.add_argument("--start", default="2024-01-01")
     ap.add_argument("--end", default="2024-12-31")
     ap.add_argument("--topn", type=int, default=100)
+    ap.add_argument("--temp", type=float, default=1.0)
+    ap.add_argument("--samples", type=int, default=1)
     args = ap.parse_args()
 
     dev = "cuda" if torch.cuda.is_available() else "cpu"
@@ -96,8 +98,8 @@ def main():
                 out = pred.predict_batch(df_list=fb,
                                          x_timestamp_list=[x_ts] * len(fb),
                                          y_timestamp_list=[y_ts] * len(fb),
-                                         pred_len=PRED_LEN, T=TEMPERATURE,
-                                         top_p=TOPP, sample_count=N_SAMPLES,
+                                         pred_len=PRED_LEN, T=args.temp,
+                                         top_p=TOPP, sample_count=args.samples,
                                          verbose=False)
             except Exception as e:
                 print("BATCHERR", str(e)[:80], flush=True)

@@ -330,6 +330,38 @@ and each of the hundred universe names we build a past-only window of daily
 bars, obtain a one-step prediction, and store predicted close, previous close
 and the realised close for the forecasting analysis.
 
+
+\subsection{Disclosed decoding deviation for the forecast arm}
+\label{sec:kronos-decoding}
+
+The source model's own inference guidance recommends, for price-series
+forecasting, a temperature of $0.6$ with ten averaged samples. The runs reported
+here used a temperature of $1.0$ and a single sample. We state this next to the
+results rather than in a footnote, because it works against the forecast arm:
+the model is a generative sampler, so a single draw retains the full sampling
+variance, and averaging ten draws is the mechanism that suppresses it. A noisier
+per-asset expected-return estimate produces a noisier cross-sectional ranking,
+which is precisely what erodes a long/short spread.
+
+The forecast results in Table~\ref{tab:forecast} and the Kronos row of
+Table~\ref{tab:portfolio} should therefore be read as a lower bound on what the
+released checkpoint can do under this protocol. Re-running inference at the full
+recommended setting over the whole window costs about ten times the inference
+time; we instead ran it over the final year and report the direct comparison in
+Table~\ref{tab:decoding}.
+
+The ablation is instructive. The recommended decoding (temperature $0.6$, five
+averaged samples) substantially improves level accuracy: mean absolute error
+falls from about $10.0$ to $8.6$ on the shared window. It does almost nothing
+for the cross-sectional rank information coefficient, which remains
+indistinguishable from zero in both configurations (approximately $-0.006$ with
+a $t$-statistic magnitude below $0.5$). This separates two things that are easy
+to conflate: the model becomes a better forecaster of price levels while still
+providing no reliable cross-sectional ordering signal. A portfolio needs the
+ordering, so the decoding correction does not rescue the strategy, and we report
+the ablation rather than using the better level error to imply a better
+strategy.
+
 \subsection{AlphaZeroBeta arm}
 The agent is re-initialised and retrained for every fold, using only data
 before that fold's test window. Observation, reward, projection, network and
@@ -365,6 +397,8 @@ reference forecaster; in financial data it is a stubbornly strong baseline
 signal. We test the difference in squared
 error with the Diebold--Mariano statistic using a heteroskedasticity-robust
 long-run variance estimate and the small-sample correction.
+
+\input{\tabdir/tab_decoding}
 
 \section{Portfolio Evaluation}
 \label{sec:portfolio}

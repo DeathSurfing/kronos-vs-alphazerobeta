@@ -253,6 +253,20 @@ def t11():
           "tab:seeds", note="Computed over the fold subset re-run with three seeds within the available compute budget.")
 
 
+def t12_decoding():
+    pth = f"{TAB}/T12_decoding_ablation.csv"
+    if not os.path.exists(pth):
+        return
+    d = pd.read_csv(pth)
+    rows = [[esc(r["config"]), f"{int(r['n'])}", fmt(r["mae"], 2), fmt(r["rmse"], 2),
+             fmt(r["dir_acc"], 4), fmt(r["rank_ic_mean"], 5), fmt(r["rank_ic_t"], 2)]
+            for _, r in d.iterrows()]
+    write("tab_decoding", ["Decoding", "N", "MAE", "RMSE", "Dir.\\ acc.", "Rank IC", "Rank IC $t$"],
+          rows, "Decoding ablation for the forecast arm over the overlapping 2024 window (25{,}200 shared forecasts). The model's own recommended price-forecasting setting is compared against the setting used in the reported runs.",
+          "tab:decoding",
+          note="The recommended setting roughly halves the relative error in level accuracy but leaves the cross-sectional rank information coefficient statistically indistinguishable from zero in both cases. Advice, not beta, is what the portfolio needs.")
+
+
 def t12_leakage():
     rows = [
         ["Feature timing", "All features at date $t$ are computed from bars $\\le t-1$; labels are the return of $t$", "No future bar, adjustment or fundamental enters a feature"],
@@ -270,7 +284,7 @@ def t12_leakage():
 
 
 def main():
-    t1(); t2(); t3(); t4(); t5(); t6(); t7(); t8(); t9(); t10(); t11(); t12_leakage()
+    t1(); t2(); t3(); t4(); t5(); t6(); t7(); t8(); t9(); t10(); t11(); t12_decoding(); t12_leakage()
     print("latex fragments:", sorted(os.listdir(TEX)), flush=True)
 
 

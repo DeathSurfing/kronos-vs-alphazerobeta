@@ -96,7 +96,7 @@ before any test-window result was computed.
 | Max-Sharpe | 0.194 | 0.238 | 0.864 | 1.122 | -0.325 | -0.129 | -- |
 | Min-correlation | 0.184 | 0.217 | 0.887 | 1.151 | -0.380 | -0.109 | -- |
 | Kronos (zero-shot) | -0.236 | 0.088 | -3.010 | -4.874 | -0.921 | 0.010 | -- |
-| S&P 500 buy-and-hold | 0.115 | 0.171 | 0.725 | 0.859 | -0.339 | 1.000 | -- |
+| S\&P 500 buy-and-hold | 0.115 | 0.171 | 0.725 | 0.859 | -0.339 | 1.000 | -- |
 | AlphaZeroBeta | -0.000 | 0.000 | -0.227 | -0.117 | -0.001 | 0.000 | -- |
 
 ### Published vs reproduced, S&P 500 (generated)

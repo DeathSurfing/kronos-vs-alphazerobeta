@@ -179,3 +179,32 @@ Consequence for the reported results: no reproduced Sharpe ratio is claimed for
 AlphaZeroBeta. The published configuration is reported to need 57-106 GPU-hours
 per index on a V100; this study had roughly two orders of magnitude less compute.
 The failure to reproduce is reported as a finding, not hidden.
+
+
+---
+
+## Addendum: Kronos decoding configuration (deviation D11)
+
+The Kronos paper's inference table recommends, for price-series forecasting,
+temperature 0.6, top-p 0.90, and **10 averaged samples**. The runs reported in
+this study used **temperature 1.0 and a single sample**. This is a deliberate
+disclosure of a configuration error on our side, not a property of the model.
+
+Why it matters: the model is a generative sampler, so a single draw carries the
+full sampling variance. The paper averages ten draws precisely to suppress that
+variance before computing the implied return. With N=1, the per-asset
+expected-return signal is noisier than the published configuration would
+produce, and a noisier cross-sectional ranking is exactly what destroys the
+long/short spread.
+
+Consequence for the results: the Kronos arm reported here should be read as a
+**lower bound** on the released model's behaviour under this protocol. Re-running
+inference at T=0.6 with N=10 costs roughly ten times the inference time
+(~5 GPU-hours on this host for the full 2014-2024 window); it was not completed
+inside the available compute budget and is listed as the first item of future
+work.
+
+A second, smaller deviation: the paper reports IC/RankIC averaged over the four
+OHLC channels, whereas the exploitation signal used here is derived solely from
+the predicted close. We do not report an IC number for the paper's four-channel
+definition.
