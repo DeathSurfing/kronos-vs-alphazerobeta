@@ -148,3 +148,34 @@ statsmodels, yfinance, paramiko.
 
 Data and weights are downloaded from their official public sources on first
 run; neither is redistributed in this repository.
+
+
+---
+
+## Addendum: three failed training attempts (all reported)
+
+The AlphaZeroBeta arm was trained three times. All three outcomes are recorded
+in the paper (Table "instability") and in `experiment_log.jsonl`; none was
+silently discarded.
+
+| Run | tag | steps/fold | lr | reward/value clip | outcome |
+|---|---|---|---|---|---|
+| A | `azb` | 200 | 3e-4 | none | 22/22 folds; policy collapsed to the null portfolio from fold 2 (gross exposure 0.000) |
+| B | `azbdeep` | 1500 | 1e-4 | none | value loss 3.2e25 (fold 0); NaN policy on fold 2 |
+| C | `azbdeep2` | 1500 | 5e-5 | reward +-10, value +-50 | value loss 8.0e11 (fold 0); killed after fold 0 |
+
+Root cause: Eq. 8 divides by $\sigma_p$, floored at 1e-8 in the source. Early in
+training the policy is near-flat, so $\sigma_p$ is tiny and the ratio is enormous;
+the resulting advantage inflates the value target without bound. The first run's
+value loss reached 3e25; the second 8e11.
+
+Mitigation applied in run C: clip the risk-adjusted term to +-10 and the value
+target to +-50, plus a guard that skips any optimiser step whose gradients or
+loss are non-finite. This removes the divergence but does not by itself produce a
+profitable policy inside this budget: the finite run's learned book averaged
+gross exposure 0.041 against the cap of 1.0.
+
+Consequence for the reported results: no reproduced Sharpe ratio is claimed for
+AlphaZeroBeta. The published configuration is reported to need 57-106 GPU-hours
+per index on a V100; this study had roughly two orders of magnitude less compute.
+The failure to reproduce is reported as a finding, not hidden.
