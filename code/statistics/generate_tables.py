@@ -100,6 +100,7 @@ def t2_dataset():
 
 
 def t3_published():
+    per_market = [1.63, 0.94, 0.86, 1.61, 1.04, 1.48, 1.20]   # published, Table 4
     rows = [
         {"source": "AlphaZeroBeta (Belyakov 2026)", "market": "^GSPC", "metric": "Sharpe", "value": 1.61, "uncertainty": "0.48"},
         {"source": "AlphaZeroBeta (Belyakov 2026)", "market": "^NDX", "metric": "Sharpe", "value": 1.48, "uncertainty": "0.41"},
@@ -110,7 +111,8 @@ def t3_published():
         {"source": "AlphaZeroBeta (Belyakov 2026)", "market": "000001.SS", "metric": "Sharpe", "value": 1.63, "uncertainty": "0.38"},
         {"source": "AlphaZeroBeta (Belyakov 2026)", "market": "^GSPC", "metric": "max drawdown", "value": -0.26, "uncertainty": "0.15"},
         {"source": "AlphaZeroBeta (Belyakov 2026)", "market": "^GSPC", "metric": "corr to index", "value": 0.15, "uncertainty": "0.09"},
-        {"source": "AlphaZeroBeta (Belyakov 2026)", "market": "all 7", "metric": "average Sharpe", "value": 1.19, "uncertainty": "-"},
+        {"source": "AlphaZeroBeta (Belyakov 2026)", "market": "all 7", "metric": "average Sharpe",
+         "value": float(np.mean(per_market)), "uncertainty": "0.30"},
         {"source": "Kronos (Shi et al. 2025)", "market": "various", "metric": "zero-shot forecasting", "value": np.nan,
          "uncertainty": "-"},
     ]

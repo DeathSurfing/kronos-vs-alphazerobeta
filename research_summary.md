@@ -104,7 +104,7 @@ Values as reported by the original authors. These are **not** our experiments.
 | AlphaZeroBeta (Belyakov 2026) | 000001.SS | Sharpe | 1.63 | 0.38 |
 | AlphaZeroBeta (Belyakov 2026) | ^GSPC | max drawdown | -0.26 | 0.15 |
 | AlphaZeroBeta (Belyakov 2026) | ^GSPC | corr to index | 0.15 | 0.09 |
-| AlphaZeroBeta (Belyakov 2026) | all 7 | average Sharpe | 1.19 | - |
+| AlphaZeroBeta (Belyakov 2026) | all 7 | average Sharpe | 1.251 | 0.30 |
 | Kronos (Shi et al. 2025) | various | zero-shot forecasting | nan | - |
 
 ## 7. Independent reproduction
