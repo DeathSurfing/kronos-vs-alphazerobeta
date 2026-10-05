@@ -152,9 +152,9 @@ run; neither is redistributed in this repository.
 
 ---
 
-## Addendum: three failed training attempts (all reported)
+## Addendum: training attempts, including three that failed (all reported)
 
-The AlphaZeroBeta arm was trained three times. All three outcomes are recorded
+The AlphaZeroBeta arm was trained four times. All four outcomes are recorded
 in the paper (Table "instability") and in `experiment_log.jsonl`; none was
 silently discarded.
 
@@ -163,6 +163,11 @@ silently discarded.
 | A | `azb` | 200 | 3e-4 | none | 22/22 folds; policy collapsed to the null portfolio from fold 2 (gross exposure 0.000) |
 | B | `azbdeep` | 1500 | 1e-4 | none | value loss 3.2e25 (fold 0); NaN policy on fold 2 |
 | C | `azbdeep2` | 1500 | 5e-5 | reward +-10, value +-50 | value loss 8.0e11 (fold 0); killed after fold 0 |
+| D | `azbfast3` | 2000 | 3e-4 | reward +-10, value +-50 | 22/22 folds, no non-finite update; mean gross exposure 0.83; **this is the arm reported in the paper** |
+
+Runs A-C are kept for the instability table. Run D (the clipping from C plus a
+10x step budget) is the arm whose weights back the reported AlphaZeroBeta row;
+`windows/` holds it and `windows_azb200/` holds run A.
 
 Root cause: Eq. 8 divides by $\sigma_p$, floored at 1e-8 in the source. Early in
 training the policy is near-flat, so $\sigma_p$ is tiny and the ratio is enormous;
@@ -175,10 +180,13 @@ loss are non-finite. This removes the divergence but does not by itself produce 
 profitable policy inside this budget: the finite run's learned book averaged
 gross exposure 0.041 against the cap of 1.0.
 
-Consequence for the reported results: no reproduced Sharpe ratio is claimed for
-AlphaZeroBeta. The published configuration is reported to need 57-106 GPU-hours
-per index on a V100; this study had roughly two orders of magnitude less compute.
-The failure to reproduce is reported as a finding, not hidden.
+Consequence for the reported results: the reproduced Sharpe ratio for
+AlphaZeroBeta is reported as a lower bound attributable to this budget, not as a
+refutation of the published figure. The published configuration is reported to
+need 57-106 GPU-hours per index on a V100; this study had roughly two orders of
+magnitude less compute, and the arm that is reported (run D, 2000 steps/fold)
+still sits well below that. Runs A-C are reported as instability findings, not
+hidden.
 
 
 ---

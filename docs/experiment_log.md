@@ -50,8 +50,8 @@ reported in the paper.
 | Model | AlphaZeroBeta CNN-GRU recurrent-PPO (1,703,587 params) |
 | Folds | all 22, each retrained from scratch on that fold's training window |
 | Seeds | 42 |
-| Configuration | PPO epochs 3, rollout 16, minibatch 64, gamma 0.99, lr 3e-4, clip 0.20, GAE 0.95, entropy 0.01, value 0.5, grad clip 0.5, lambda1 0.5, lambda2 0.001, obs window 100 |
-| Steps per fold | 200 |
+| Configuration | PPO epochs 3, rollout 16, minibatch 64, gamma 0.99, lr 3e-4, clip 0.20, GAE 0.95, entropy 0.01, value 0.5, grad clip 0.5, lambda1 0.5, lambda2 0.001, obs window 100, reward clip +-10, value clip +-50 |
+| Steps per fold | 2000 (run tag `azbfast3`; the earlier 200-step run `azb` is archived in `windows_azb200/` and reported only as an instability finding) |
 | Runtime | recorded per fold in `experiment_log.jsonl` |
 | Raw output | `windows/w_fold<NN>_seed42.parquet` (date x ticker weights) |
 | Notes | deviations D1-D9 in `docs/reproduction.md` |

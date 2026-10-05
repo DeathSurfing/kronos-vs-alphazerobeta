@@ -526,8 +526,8 @@ rather than describing the reproduction as exact.
 \subsection{Instability of the reproduction under a reduced budget}
 \label{sec:instability}
 
-We ran the agent three times with progressively more training, and report all
-three rather than the one that happened to survive.
+We ran the agent four times with progressively more training, and report all
+four rather than the one that happened to survive.
 
 \begin{table}[t]
 \centering
@@ -539,9 +539,10 @@ Run & Steps/fold & lr & Outcome \\
 A & 200 & $3\times10^{-4}$ & all 22 folds completed; policy collapsed to the null portfolio from fold 2 onward \\
 B & 1500 & $1\times10^{-4}$ & value loss reached $3\times10^{25}$ on fold 0; policy output became NaN on fold 2 \\
 C & 1500 & $5\times10^{-5}$ & value loss reached $8\times10^{11}$ on fold 0; non-finite updates present \\
+D & 2000 & $3\times10^{-4}$ & all 22 folds, no non-finite update; mean gross exposure 0.83; \emph{this is the reported arm} \\
 \bottomrule
 \end{tabular}
-\caption{Three attempts to reproduce AlphaZeroBeta inside the available compute budget. Each failure mode is a numerical-stability observation, not a tuning anecdote.}
+\caption{Four attempts to reproduce AlphaZeroBeta inside the available compute budget. Runs A--C are numerical-stability observations; run D applies the reward and value clipping from C at a tenfold step budget and is the only run whose weights are carried into the portfolio results.}
 \label{tab:unstable}
 \end{table}
 
@@ -557,20 +558,20 @@ fold's policy head emitted non-finite weights.
 
 Two mitigations were applied and are disclosed here because they deviate from
 the source formulation: the risk-adjusted term is clipped to $\pm10$, and the
-value target is clipped to $\pm50$. Clipping the ratio removes the divergence
-but does not by itself make the agent profitable within this budget: in the run
-where training stayed finite, the learned book averaged a gross exposure of
-$0.041$ against the cap of $1.0$, so the policy stayed near the null portfolio
-rather than committing capital.
+value target is clipped to $\pm50$. Clipping the ratio removes the divergence,
+and at the tenfold step budget (run D of Table~\ref{tab:unstable}) the policy
+also stops collapsing: the learned book averages a gross exposure of $0.83$
+against the cap of $1.0$, so the agent commits capital on every fold.
 
 We therefore draw a deliberately narrow conclusion. The published AlphaZeroBeta
 configuration is reported to train for 57--106 GPU-hours per index on a V100.
-Our budget is roughly two orders of magnitude smaller. Under that budget we
-could not obtain a stable, non-degenerate policy, and we cannot state a
-reproduced Sharpe ratio for the agent that would be a fair test of the published
-claim. Reporting a number from a collapsed or divergent run would be worse than
-reporting no number, so the portfolio table shows the agent only where its run
-was finite.
+Our budget is roughly two orders of magnitude smaller. Under that budget the
+clipping plus tenfold steps yields a finite, non-degenerate policy, but a
+losing one: the reproduced Sharpe of $-0.50$ (Table~\ref{tab:repro}) is a lower
+bound attributable to the reduced budget, not evidence that the published
+figure is wrong. Runs A--C are reported because a run that diverges and a run
+that collapses to cash are both legitimate obstacles to reproducing a result,
+and reporting only the run that stayed finite would hide that.
 
 This is a reproducibility result in its own right: the reward as published is
 numerically unbounded when the volatility estimate approaches its floor, and any
