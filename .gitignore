@@ -1,0 +1,45 @@
+# --- secrets and environment ---
+.env
+*.env
+.env.*
+
+# --- datasets and model artefacts (downloaded, not redistributed) ---
+results/raw/ohlcv/
+results/raw/universe.json
+data/
+*.parquet
+third_party/weights/
+third_party/kronos/
+windows/
+windows_seed/
+hf/
+
+# --- build artefacts ---
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.synctex.gz
+paper/kronos_vs_alphazerobeta.pdf
+
+# --- caches ---
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+
+# --- scratch ---
+scratch/
+*.tmp
+*.bak
+
+# source paper PDFs (downloaded, not redistributed)
+papers/
+
+# generated latex body
+_summary_body.tex
+research_summary.aux
+research_summary.log

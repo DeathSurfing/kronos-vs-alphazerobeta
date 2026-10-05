@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, protocol, or any of its tables, please cite it as below."
+title: "Kronos vs AlphaZeroBeta: A Controlled, Leakage-Free Comparison of a Financial Foundation Model and a Reinforcement-Learning Portfolio Agent"
+abstract: >-
+  A controlled, leakage-free walk-forward benchmark comparing a financial
+  K-line foundation model (Kronos, zero-shot) with a CNN-GRU recurrent-PPO
+  market-neutral portfolio agent (AlphaZeroBeta), evaluated on the S&P 500
+  over 22 out-of-sample folds spanning 2014-2024 under identical universes,
+  costs and portfolio constraints. Includes a partial independent reproduction
+  of the published AlphaZeroBeta results with all deviations documented.
+type: software
+authors:
+  - family-names: "Vikk"
+    alias: "DeathSurfing"
+version: "1.0.0"
+date-released: "2026-10-05"
+license: MIT
+repository-code: "https://github.com/DeathSurfing/kronos-vs-alphazerobeta"
+keywords:
+  - financial machine learning
+  - foundation models
+  - reinforcement learning
+  - market-neutral portfolios
+  - walk-forward validation
+  - backtesting
+  - reproducibility
+references:
+  - type: article
+    title: "AlphaZeroBeta: Deep Reinforcement Learning for Market-Neutral Portfolios"
+    authors:
+      - family-names: "Belyakov"
+        given-names: "Boris"
+    year: 2026
+    doi: "10.1186/s40854-026-00955-4"
+  - type: article
+    title: "Kronos: A Foundation Model for the Language of Financial Markets"
+    authors:
+      - family-names: "Shi"
+        given-names: "Yu"
+    year: 2025
+    journal: "arXiv preprint arXiv:2508.02739"

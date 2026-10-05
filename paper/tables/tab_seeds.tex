@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Random-seed sensitivity of AlphaZeroBeta. All seeds are reported, including the worst, so the headline number is not a best run.}
+\label{tab:seeds}
+\begin{tabular}{lrrr}
+\toprule
+Seed & Sharpe & CAGR & Max DD \\
+\midrule
+42 & -4.081 & -0.059 & -0.030 \\
+123 & -2.119 & -0.049 & -0.029 \\
+456 & -1.655 & 0.002 & -0.034 \\
+mean & -2.618 & -0.035 & -0.031 \\
+std & 1.288 & 0.033 & 0.003 \\
+best & -1.655 & 0.002 & -0.029 \\
+worst & -4.081 & -0.059 & -0.034 \\
+\bottomrule
+\multicolumn{4}{l}{\footnotesize Computed over the fold subset re-run with three seeds within the available compute budget.} \\
+\end{tabular}
+\end{table}

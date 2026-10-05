@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering
+\caption{Transaction-cost sensitivity. $0\times$ removes all costs, $2\times$ doubles commission and borrow.}
+\label{tab:cost}
+\begin{tabular}{lrrrr}
+\toprule
+Model & Sharpe 0$\times$ & Sharpe 1$\times$ & Sharpe 2$\times$ & Turnover 1$\times$ \\
+\midrule
+AlphaZeroBeta & 0.134 & -0.227 & -0.548 & -- \\
+Equal weight & 0.793 & 0.756 & 0.719 & -- \\
+S\&P 500 buy-and-hold & 0.725 & 0.725 & 0.725 & -- \\
+Kronos (zero-shot) & 0.270 & -3.010 & -6.276 & -- \\
+Max-Sharpe & 0.916 & 0.864 & 0.812 & -- \\
+Min-correlation & 0.934 & 0.887 & 0.840 & -- \\
+Momentum (12-1) & 0.115 & -0.160 & -0.435 & -- \\
+Ridge (walk-forward) & 0.207 & -1.478 & -3.157 & -- \\
+\bottomrule
+\end{tabular}
+\end{table*}

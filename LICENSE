@@ -1,0 +1,41 @@
+MIT License
+
+Copyright (c) 2026 Vikk (DeathSurfing)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+THIRD-PARTY MATERIALS
+
+This licence covers the original code, text and figures produced for this
+study only. It does NOT cover:
+
+- The Kronos model implementation and released checkpoints, which remain under
+  the licence of their original authors. The repository code is used
+  unmodified; the weights are downloaded at run time from the official model
+  hub and are not redistributed here.
+- AlphaZeroBeta, which is described in the cited paper. The re-implementation
+  in `code/alphazerobeta/` is original code written for this study from the
+  published description, not a copy of any released source.
+- Market data, which is retrieved from a public market-data endpoint and is
+  not redistributed.
+
+Users of this repository are responsible for complying with the licences of
+any third-party code, weights or data they download through these scripts.

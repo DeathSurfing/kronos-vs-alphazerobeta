@@ -1,0 +1,14 @@
+\begin{table*}[t]
+\centering
+\caption{Level-1 forecasting evaluation for the S\&P 500 panel, zero-shot Kronos against the random-walk benchmark. AlphaZeroBeta is excluded by design: it emits portfolio weights, not point forecasts, so forecasting metrics are not defined for it.}
+\label{tab:forecast}
+\begin{tabular}{lrrrrrr}
+\toprule
+Forecaster & MAE & RMSE & Dir.\ acc. & Rank IC & Rank IC $t$ & N \\
+\midrule
+Kronos-small (zero-shot) & 4.7306 & 13.1554 & 0.4983 & 0.0011 & 0.32 & 251003 \\
+Random walk (pred = prev close) & 1.6306 & 3.3577 & 0.9959 & -- & -- & 251003 \\
+\bottomrule
+\multicolumn{7}{l}{\footnotesize Diebold--Mariano on squared errors (Kronos vs random walk): $DM=30.190$, $p=0.000$, $n=2515$ daily observations. Rank IC is the mean daily cross-sectional Spearman correlation between predicted and realised next-day return; the $t$-statistic is over days.} \\
+\end{tabular}
+\end{table*}

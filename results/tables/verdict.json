@@ -1,0 +1,119 @@
+{
+ "n_arms": 8,
+ "best": "mincorr",
+ "best_sharpe": 0.8871824715404852,
+ "sharpe_kronos": -3.00975891388946,
+ "corr_kronos": 0.0207441828584266,
+ "mdd_kronos": -0.9205242240350252,
+ "sharpe_azb_s42": -0.2273507808792227,
+ "corr_azb_s42": 0.0001781930152456,
+ "mdd_azb_s42": -0.0010730988865782,
+ "sharpe_momentum": -0.1603736194375528,
+ "corr_momentum": -0.0831609394090905,
+ "mdd_momentum": -0.3631140901502142,
+ "sharpe_ridge": -1.4779233116701702,
+ "corr_ridge": 0.0063703637917659,
+ "mdd_ridge": -0.8186039230682414,
+ "kronos_vs_azb_s42": {
+  "diff": -2.668,
+  "ci": [
+   -3.614,
+   -1.76
+  ],
+  "p": 0.0,
+  "significant": true
+ },
+ "kronos_vs_index_ref": {
+  "diff": -3.738,
+  "ci": [
+   -4.888,
+   -2.89
+  ],
+  "p": 0.0,
+  "significant": true
+ },
+ "azb_s42_vs_index_ref": {
+  "diff": -0.961,
+  "ci": [
+   -1.807,
+   -0.177
+  ],
+  "p": 0.0176,
+  "significant": true
+ },
+ "kronos_vs_momentum": {
+  "diff": -2.847,
+  "ci": [
+   -4.041,
+   -1.731
+  ],
+  "p": 0.0,
+  "significant": true
+ },
+ "azb_s42_vs_momentum": {
+  "diff": -0.301,
+  "ci": [
+   -0.923,
+   0.542
+  ],
+  "p": 0.2452,
+  "significant": false
+ },
+ "kronos_vs_ridge": {
+  "diff": -1.597,
+  "ci": [
+   -2.495,
+   -0.681
+  ],
+  "p": 0.0004,
+  "significant": true
+ },
+ "azb_s42_vs_ridge": {
+  "diff": 1.144,
+  "ci": [
+   0.405,
+   1.89
+  ],
+  "p": 0.0028,
+  "significant": true
+ },
+ "kronos_vs_equal": {
+  "diff": -3.785,
+  "ci": [
+   -4.862,
+   -2.986
+  ],
+  "p": 0.0,
+  "significant": true
+ },
+ "repro": [
+  {
+   "metric": "sharpe",
+   "published": 1.61,
+   "reproduced": -0.2274,
+   "abs_diff": -1.8374,
+   "pct_diff": -114.1
+  },
+  {
+   "metric": "max_dd",
+   "published": -0.26,
+   "reproduced": -0.0011,
+   "abs_diff": 0.2589,
+   "pct_diff": 99.6
+  },
+  {
+   "metric": "corr",
+   "published": 0.15,
+   "reproduced": 0.0002,
+   "abs_diff": -0.1498,
+   "pct_diff": -99.9
+  },
+  {
+   "metric": "index buy-and-hold sharpe",
+   "published": 0.72,
+   "reproduced": 0.7252,
+   "abs_diff": 0.0052,
+   "pct_diff": 0.7
+  }
+ ]
+}

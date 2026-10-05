@@ -1,0 +1,83 @@
+# Frozen experiment configuration. Every number in the paper traces to this file
+# plus results/raw/* and results/tables/*.
+dataset:
+  market: "S&P 500"
+  benchmark: "^GSPC"
+  start_date: "2014-01-02"       # first out-of-sample date
+  end_date: "2024-12-31"
+  sample_start: "2013-06-03"     # raw panel start (warm-up + rolling estimators)
+  n_tickers: 476
+  n_days: 2924
+  frequency: daily
+  price_adjustment: "OHLC * AdjClose/Close (same-day factor)"
+
+universe:
+  top_n_liquidity: 100           # applied identically to every model
+  liquidity_window_days: 60
+  min_history_days: 252
+
+walk_forward:
+  train_days: 756
+  val_days: 126
+  test_days: 126
+  step_days: 126
+  folds_expected: 22
+
+backtest:
+  transaction_cost_bps_top_decile: 5
+  transaction_cost_bps_other: 15
+  borrow_bps_annual: 30
+  cost_sensitivity: [0.0, 1.0, 2.0]
+  rebalance_frequency: daily
+  execution_lag_days: 1
+
+portfolio:
+  market_neutral: true
+  dollar_neutral: true
+  gross_exposure_cap: 1.0
+  per_name_cap: 1.0
+  names_per_side: 20
+  long_only_reference:
+    gross_exposure_cap: 1.0
+    per_name_cap: 1.0
+
+evaluation:
+  seeds: [42, 123, 456]
+  seeds_all_folds: [42]
+  seeds_robustness_folds: [0, 7, 14]
+  bootstrap_resamples: 5000
+  bootstrap_block_days: 21
+  newey_west_lag: 5
+  regime_definitions:
+    vol_terciles: [0.333, 0.667]
+    bear_drawdown_threshold: -0.10
+
+kronos:
+  checkpoint: "NeoQuasar/Kronos-small"
+  tokenizer: "NeoQuasar/Kronos-Tokenizer-base"
+  params: 24741376
+  context_bars: 400
+  tokens_context: 512
+  forecast_horizon: 1
+  temperature: 1.0
+  top_p: 0.9
+  sample_count: 1
+  mode: zero-shot
+
+alphazerobeta:
+  params: 1703587
+  obs_window: 100
+  ponytail_note: "PPO epochs 10 -> 3 and rollout 24 -> 16 for the compute budget"
+  ppo_epochs: 3
+  rollout: 16
+  minibatch: 64
+  gamma: 0.99
+  lr: 0.0003
+  clip: 0.20
+  gae_lambda: 0.95
+  entropy_coef: 0.01
+  value_coef: 0.5
+  grad_clip: 0.5
+  lambda1_corr: 0.5
+  lambda2_turnover: 0.001
+  steps: 200

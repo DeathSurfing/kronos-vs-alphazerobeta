@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.2pt}
+\caption{Data-leakage audit. Each control is enforced in code and re-checked by the tests in \texttt{tests/}.}
+\label{tab:leakage}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Audit item & Control & Bias addressed \\
+\midrule
+Feature timing & All features at date $t$ are computed from bars $\le t-1$; labels are the return of $t$ & No future bar, adjustment or fundamental enters a feature \\
+Normalisation & Cross-sectional standardisation uses same-day cross-sections only; no global mean or variance & No full-sample statistics leak into training \\
+Universe & Membership and liquidity ranks computed from trailing 60-day dollar volume & No forward index membership; a fixed top-100 set is used for all models, killable as survivorship (Sec.~\ref{sec:threats}) \\
+Hyperparameters & All hyperparameters fixed before the test windows were run, in \texttt{configs/base.yaml} & No test-set tuning; model selection would use validation only \\
+Kronos context & Context window ends at $t-1$ and predicts $t$ & Zero-shot, no fine-tuning on any S\&P 500 data \\
+RL agent update & Policy parameters for a fold are fitted on data strictly before the fold's test window & Walk-forward retraining, expanding-window information set \\
+Costs & Applied per rebalance from the stated schedule, dated at execution & Costs are not tuned to flatter either model \\
+Resampling & Chronological only; no shuffling anywhere in the pipeline & No i.i.d. assumption on the time axis \\
+\bottomrule
+\multicolumn{3}{l}{\footnotesize Residual exposures that cannot be removed from public daily data are listed in Section~\ref{sec:threats} rather than claimed away.} \\
+\end{tabular}
+\end{table*}

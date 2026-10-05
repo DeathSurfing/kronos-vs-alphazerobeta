@@ -1,0 +1,21 @@
+item,value
+market,S&P 500 (^GSPC)
+data source,"Yahoo Finance daily bars via yfinance, retrieved 2026-10-05"
+price adjustment,"OHLC scaled by AdjClose/Close (splits+dividends), same-day factor"
+panel,476 tickers x 2924 trading days
+sample,2014-01-02 .. 2024-12-31
+investable set,"top 100 by 60d mean dollar volume, identical for all models"
+train window,756 trading days (~36 months)
+validation window,126 trading days (~6 months)
+test window,126 trading days (~6 months)
+step,126 trading days (6 months)
+out-of-sample folds,"22 non-overlapping, 2014-01-02 .. 2025-01-07"
+rebalance,daily
+execution,"weights formed from information <= t-1, applied to the return of t"
+transaction costs,"5 bps/side top liquidity decile, 15 bps/side otherwise (AZB Table D4)"
+borrow cost,"30 bps/yr on short notional, accrued per holding day"
+sensitivity,0x / 1x / 2x the baseline schedule
+constraints (neutral arms),"sum w = 0, sum|w| <= 1, w_i in [-1,1], 20 names per side"
+constraints (long arms),"sum w = 1, w_i >= 0"
+seeds,"AZB: 1 seed all 22 folds; 3 seeds on folds {0,7,14} for seed sensitivity"
+hardware,"NVIDIA RTX 4080 SUPER 16 GB, Windows 11; CPU pipeline on 4-core container"

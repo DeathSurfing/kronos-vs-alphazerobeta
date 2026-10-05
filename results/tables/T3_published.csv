@@ -1,0 +1,12 @@
+source,market,metric,value,uncertainty
+AlphaZeroBeta (Belyakov 2026),^GSPC,Sharpe,1.61,0.48
+AlphaZeroBeta (Belyakov 2026),^NDX,Sharpe,1.48,0.41
+AlphaZeroBeta (Belyakov 2026),^DJI,Sharpe,1.2,0.28
+AlphaZeroBeta (Belyakov 2026),^FTSE,Sharpe,0.94,0.19
+AlphaZeroBeta (Belyakov 2026),^GDAXI,Sharpe,0.86,0.23
+AlphaZeroBeta (Belyakov 2026),^HSI,Sharpe,1.04,0.33
+AlphaZeroBeta (Belyakov 2026),000001.SS,Sharpe,1.63,0.38
+AlphaZeroBeta (Belyakov 2026),^GSPC,max drawdown,-0.26,0.15
+AlphaZeroBeta (Belyakov 2026),^GSPC,corr to index,0.15,0.09
+AlphaZeroBeta (Belyakov 2026),all 7,average Sharpe,1.19,-
+Kronos (Shi et al. 2025),various,zero-shot forecasting,,-

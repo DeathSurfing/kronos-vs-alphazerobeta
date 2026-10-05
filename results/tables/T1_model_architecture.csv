@@ -1,0 +1,3 @@
+model,type,params,context,inputs,objective,decision_use,training_here
+Kronos-small,financial foundation model (decoder-only transformer),24741376,512,OHLCV + amount,next-bar K-line generation (self-supervised pre-training),forecast -> cross-sectional ranking -> weights,zero-shot (no fine-tuning)
+AlphaZeroBeta,CNN-GRU actor-critic (recurrent PPO),1703587,100,8 past-only price/volume features x 3 resolutions,reward Eq.8: risk-adjusted excess return - corr penalty - turnover,policy emits dollar-neutral weights directly,trained per walk-forward fold

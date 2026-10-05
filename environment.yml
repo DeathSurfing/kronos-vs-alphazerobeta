@@ -1,0 +1,21 @@
+name: kronos-vs-alphazerobeta
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - numpy>=1.26
+  - pandas>=2.2
+  - pyarrow>=15
+  - scipy>=1.11
+  - matplotlib>=3.8
+  - pyyaml>=6
+  - statsmodels>=0.14
+  - requests>=2.31
+  - pytest>=8.0
+  - pip
+  - pip:
+      - yfinance>=0.2.40
+      - paramiko>=3.4
+# GPU arms are installed separately on the GPU host:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+#   pip install einops huggingface_hub pandas pyarrow
