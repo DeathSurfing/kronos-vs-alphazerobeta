@@ -17,6 +17,10 @@ and identical portfolio constraints.
 
 ---
 
+> **Read the write-up:** a plain-English walkthrough of this benchmark, including
+> what failed to reproduce and why, is at
+> [adityavikram.dev/blog/kronos-vs-alphazerobeta](https://adityavikram.dev/blog/kronos-vs-alphazerobeta).
+
 ## Abstract
 
 Financial AI is split between forecasting-first foundation models and
@@ -90,36 +94,36 @@ before any test-window result was computed.
 
 | Model | CAGR | Vol | Sharpe | Sortino | Max DD | Beta | Turnover |
 |---|---|---|---|---|---|---|---|
-| Momentum (12-1) | -0.028 | 0.126 | -0.160 | -0.197 | -0.363 | -0.060 | -- |
-| Ridge (walk-forward) | -0.155 | 0.110 | -1.478 | -2.104 | -0.819 | 0.004 | -- |
+| Momentum (12-1) | -0.024 | 0.124 | -0.137 | -0.168 | -0.363 | -0.058 | -- |
+| Ridge (walk-forward) | -0.158 | 0.108 | -1.536 | -2.186 | -0.839 | 0.005 | -- |
 | Equal weight | 0.131 | 0.185 | 0.756 | 0.913 | -0.352 | -0.127 | -- |
-| Max-Sharpe | 0.194 | 0.238 | 0.864 | 1.122 | -0.325 | -0.129 | -- |
-| Min-correlation | 0.184 | 0.217 | 0.887 | 1.151 | -0.380 | -0.109 | -- |
-| Kronos (zero-shot) | -0.236 | 0.088 | -3.010 | -4.874 | -0.921 | 0.010 | -- |
+| Max-Sharpe | 0.196 | 0.234 | 0.881 | 1.143 | -0.325 | -0.126 | -- |
+| Min-correlation | 0.189 | 0.213 | 0.917 | 1.186 | -0.380 | -0.106 | -- |
+| Kronos (zero-shot) | -0.238 | 0.086 | -3.106 | -5.032 | -0.934 | 0.011 | -- |
 | S\&P 500 buy-and-hold | 0.115 | 0.171 | 0.725 | 0.859 | -0.339 | 1.000 | -- |
-| AlphaZeroBeta | -0.036 | 0.068 | -0.497 | -0.620 | -0.371 | -0.024 | -- |
+| AlphaZeroBeta | -0.041 | 0.067 | -0.584 | -0.729 | -0.422 | -0.023 | -- |
 
 ### Published vs reproduced, S&P 500 (generated)
 
 | Metric | Published | Reproduced | Diff % |
 |---|---|---|---|
-| sharpe | 1.61 | -0.4969 | -130.9 |
-| max_dd | -0.26 | -0.3712 | -42.8 |
-| corr | 0.15 | -0.0602 | -140.1 |
+| sharpe | 1.61 | -0.5843 | -136.3 |
+| max_dd | -0.26 | -0.4222 | -62.4 |
+| corr | 0.15 | -0.0588 | -139.2 |
 | index buy-and-hold sharpe | 0.72 | 0.7252 | 0.7 |
 
 ### Sharpe differences (generated)
 
 | model_a | model_b | sharpe_a | sharpe_b | diff | ci_lo | ci_hi | p_value | alpha_ann | alpha_t | alpha_p |
 |---|---|---|---|---|---|---|---|---|---|---|
-| kronos | azb_s42 | -3.01 | -0.491 | -2.518 | -3.536 | -1.564 | 0.0 | -0.2709 | -9.583 | 0.0 |
-| kronos | index_ref | -3.01 | 0.728 | -3.738 | -4.888 | -2.89 | 0.0 | -0.2709 | -9.583 | 0.0 |
-| azb_s42 | index_ref | -0.497 | 0.734 | -1.231 | -2.243 | -0.319 | 0.0084 | -0.0342 | -1.552 | 0.1209 |
-| kronos | momentum | -3.01 | -0.163 | -2.847 | -4.041 | -1.731 | 0.0 | -0.2709 | -9.583 | 0.0 |
-| azb_s42 | momentum | -0.505 | -0.156 | -0.35 | -1.202 | 0.54 | 0.3932 | -0.0342 | -1.552 | 0.1209 |
-| kronos | ridge | -3.01 | -1.413 | -1.597 | -2.495 | -0.681 | 0.0004 | -0.2709 | -9.583 | 0.0 |
-| azb_s42 | ridge | -0.476 | -1.479 | 1.003 | 0.152 | 1.913 | 0.0208 | -0.0342 | -1.552 | 0.1209 |
-| kronos | equal | -3.01 | 0.776 | -3.785 | -4.862 | -2.986 | 0.0 | -0.2709 | -9.583 | 0.0 |
+| kronos | azb_s42 | -3.106 | -0.504 | -2.602 | -3.662 | -1.661 | 0.0 | -0.2743 | -10.146 | 0.0 |
+| kronos | index_ref | -3.106 | 0.713 | -3.82 | -4.942 | -2.98 | 0.0 | -0.2743 | -10.146 | 0.0 |
+| azb_s42 | index_ref | -0.584 | 0.725 | -1.31 | -2.371 | -0.425 | 0.0028 | -0.0388 | -1.837 | 0.0663 |
+| kronos | momentum | -3.106 | -0.164 | -2.942 | -4.148 | -1.819 | 0.0 | -0.2743 | -10.146 | 0.0 |
+| azb_s42 | momentum | -0.518 | -0.137 | -0.381 | -1.226 | 0.461 | 0.3636 | -0.0388 | -1.837 | 0.0663 |
+| kronos | ridge | -3.106 | -1.54 | -1.566 | -2.518 | -0.692 | 0.0008 | -0.2743 | -10.146 | 0.0 |
+| azb_s42 | ridge | -0.495 | -1.536 | 1.041 | 0.213 | 1.88 | 0.0112 | -0.0388 | -1.837 | 0.0663 |
+| kronos | equal | -3.106 | 0.769 | -3.875 | -4.926 | -3.071 | 0.0 | -0.2743 | -10.146 | 0.0 |
 
 ### Seed sensitivity (generated)
 
